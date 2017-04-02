@@ -8,7 +8,7 @@
 #define Q_LIMIT 100  /* Limit on queue length. */
 #define BUSY      1  /* Mnemonics for server's being busy */
 #define IDLE      0  /* and idle. */
-#define ENDTIME	300
+#define ENDTIME	100
 
 
 void  initialize(void);
@@ -29,13 +29,13 @@ float gain;
 float totalGain;
 float serverUtilization;
 float serverUtilizationTime;
-float clientsTime[Q_LIMIT][3]; //clientsTime[clients][times(arrive,departureOfQueue,departure)]
+float clientsTime[Q_LIMIT][5]; //clientsTime[clients][times(arrive,departureOfQueue,departure,timeInQueue,totalTime)]
 
 int serverStatus;
 int elementsInQueue;
 int nextEventType;
 int totalClients;
-int actualClient;
+int currentClient;
 
 
 int main()  /* Main function. */{
@@ -83,10 +83,10 @@ void initialize(void)  /* Initialization function. */{
 
     simulationTime = 0.0;
     totalGain = 0.0;
+    currentClient=0;
     totalClients=0;
     serverUtilization=0.0;
     serverUtilizationTime=0.0;
-    actualClient=0;
     /* Initialize the state variables. */
 
     serverStatus   = IDLE;
@@ -102,7 +102,7 @@ void initialize(void)  /* Initialization function. */{
 	printf("	NEXT ARRIVE GENERATION\n");
     timeNextEvent[1] = simulationTime + generateNextInterarrive() ; //Planificacion del primer arribo
     timeNextEvent[2] = 1.0e+30; //infinito
-    
+	
 	printf("	Sistem Time : %f \n",simulationTime);
 	printf("	Time next arrive : %f \n",timeNextEvent[1]);
 	printf("	Time next departure : %f \n",timeNextEvent[2]);
@@ -121,11 +121,14 @@ void timing(void)  /* Timing function. */{
     if (timeNextEvent[1]<=timeNextEvent[2] && timeNextEvent[1]<=ENDTIME){
 		nextEventType = 1;
 		simulationTime = timeNextEvent[1];
+		totalClients++;
 	}
 	else{
 		nextEventType = 2;
 		simulationTime = timeNextEvent[2];
 	}
+	printf("	Actual client: %d\n",currentClient);
+	printf("	Total client: %d\n",totalClients);
 	printf("	Next event type %d \n",nextEventType);
 	printf("	Simulation Time %f\n",simulationTime);
 
@@ -138,12 +141,12 @@ void arrive(void)  /* Arrival event function. */{
     //float delay;
 
     /* Schedule next arrival. */
+    clientsTime[totalClients][0]= timeNextEvent[1];
+    printf("	client (%d) arrive %f\n",totalClients,clientsTime[totalClients][0]);
 	printf("	NEXT ARRIVE GENERATION\n");
     timeNextEvent[1] = simulationTime + generateNextInterarrive() ;
-    totalClients++;
-    clientsTime[totalClients][0]= simulationTime;
+    printf("	time next event: %f\n",timeNextEvent[1]);
     /* Check to see whether server is busy. */
-
     if (serverStatus == BUSY) {
 
         /* Server is busy, so increment number of customers in queue. */
@@ -162,16 +165,14 @@ void arrive(void)  /* Arrival event function. */{
         /* Guardar el tiempo de arribo de esta entidad para los calculos estadisticos */
 		totalGain = totalGain + gain;
 
-
     }
 
     else {
 
         /* Server libre, tener en  cuenta la entidad que pasa directamente al server para los calculos estadisticos */
-
 		serverStatus = BUSY;
-		actualClient++;
-		clientsTime[actualClient][1]=simulationTime;
+		currentClient++;
+		clientsTime[totalClients][1]=simulationTime;
 		serverUtilizationTime = serverUtilizationTime + (timeNextEvent[2]-simulationTime);
 			
 
@@ -179,11 +180,14 @@ void arrive(void)  /* Arrival event function. */{
         /* Schedule a departure (service completion). */
 		printf("	NEXT DEPARTURE GENERATION\n");
         timeNextEvent[2] = simulationTime + generateNextDeparture() ;
+        clientsTime[totalClients][2]=timeNextEvent[2];
+        printf("	client (%d) departure %f\n",currentClient,clientsTime[currentClient][2]);
         printf("	Time next arrive : %f (%f)\n",timeNextEvent[1],timeNextEvent[1]-simulationTime);
 		printf("	Next departure : %f (%f)\n", timeNextEvent[2],timeNextEvent[2]-simulationTime);
 		printf("	Simulation Time : %f\n",simulationTime);
 		totalGain = totalGain + gain;		
     }
+
 }
 
 
@@ -192,7 +196,6 @@ void depart(void)  /* Departure event function. */{
     //float delay;
 
     /* Check to see whether the queue is empty. */
-
     if (elementsInQueue == 0) {
         /* The queue is empty so make the server idle and eliminate the
            departure (service completion) event from consideration. */
@@ -208,9 +211,11 @@ void depart(void)  /* Departure event function. */{
            queue. */
 
         elementsInQueue = elementsInQueue -1;
-        clientsTime[actualClient][2]=simulationTime;
-        actualClient++;
-        clientsTime[actualClient][1]=simulationTime;
+        clientsTime[currentClient][2]=simulationTime;
+        printf("	client (%d) departure %f\n",currentClient,clientsTime[currentClient][2]);
+        currentClient++;
+        clientsTime[currentClient][1]=simulationTime;
+        printf("	client (%d) outOFQueue %f\n",currentClient,clientsTime[currentClient][1]);
 		printf("	Out of queue. Queue length: %d\n",elementsInQueue);
         /* Compute the delay of the customer who is beginning service and update
            the total delay accumulator. */
@@ -219,6 +224,8 @@ void depart(void)  /* Departure event function. */{
         /* Increment the number of customers delayed, and schedule departure. */
 		printf("	NEXT DEPARTURE GENERATION\n");
         timeNextEvent[2] = simulationTime + generateNextDeparture();
+        clientsTime[currentClient][2]=timeNextEvent[2];
+        printf("	client (%d) departure %f\n",currentClient,clientsTime[currentClient][2]);
         printf("	Time next arrive : %f (%f)\n",timeNextEvent[1],timeNextEvent[1]-simulationTime);
 		printf("	Time next departure : %f (%f)\n",timeNextEvent[2],timeNextEvent[2]-simulationTime);
 		printf("	Simulation Time : %f\n",simulationTime);
@@ -228,19 +235,23 @@ void depart(void)  /* Departure event function. */{
 
 void report(void)  /* Report generator function. */{
     /* Compute and write estimates of desired measures of performance. */
-	
-	//im_t
-	printf("Simulation total time : %f\n",simulationTime);
+
+	/*printf("Simulation total time : %f\n",simulationTime);
 	printf("Total clients : %d\n",totalClients);
 	printf("Gain: $ %f\n",totalGain);
 	printf("%f | %f\n",serverUtilizationTime,simulationTime);
 	printf("Server utilization %f\n",serverUtilizationTime/simulationTime);
-	printf("Clients information\n");
+	printf("Clients information\n");*/
 	int i=1;
-	while (i<totalClients){
-		printf("Client %d: Arrive: %f, outOfQueue: %f, departure: %f \n",i,clientsTime[i][0],clientsTime[i][1],clientsTime[i][2]);
+	printf("Actual client: %d\n",currentClient);
+	printf("Total client: %d\n",totalClients);
+	while (i<=totalClients){
+		clientsTime[i][3]= clientsTime[i][1] - clientsTime[i][0];
+		clientsTime[i][4]= clientsTime[i][2] - clientsTime[i][0];
+		printf("Client %d: Arrive: %f, outOfQueue: %f, departure: %f,\n timeInQueue: %f, totalTime: %f\n",i,clientsTime[i][0],clientsTime[i][1],clientsTime[i][2],clientsTime[i][3],clientsTime[i][4]);
 		i++;
 	}
+	printf("\n-------------------------------------------------------\n");
     //Average delay in queue
 
     //Average number in queue
