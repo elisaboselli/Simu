@@ -43,14 +43,14 @@ int currentClient;
 int main()  /* Main function. */{
 
     /* Initialize the simulation. */
-	printf("INITIALIZE \n");
+	//printf("INITIALIZE \n");
     initialize();
 
     /* Run the simulation while more delays are still needed. */
     //while (num_custs_delayed < num_delays_required) {
 	while (simulationTime <= ENDTIME){
 		/* Determine the next event. */
-		printf("TIMING \n");
+		//printf("TIMING \n");
 		timing();
 
 		/* Update time-average statistical accumulators. */
@@ -61,16 +61,16 @@ int main()  /* Main function. */{
 
 		switch (nextEventType) {
 			case 1:
-				printf("NEXT EVENT (ARRIVE) \n");
+				//printf("NEXT EVENT (ARRIVE) \n");
 				arrive();
 				break;
 			case 2:
-				printf("NEXT EVENT (DEPARTURE) \n");
+				//printf("NEXT EVENT (DEPARTURE) \n");
 				depart();
 				break;
 		}
     }
-    printf("Current client %d, Total clients %d\n",currentClient,totalClients);
+    //printf("Current client %d, Total clients %d\n",currentClient,totalClients);
     while(currentClient<=totalClients){
 		if(currentClient==totalClients){
 			printf("Last client departure\n");
@@ -114,7 +114,7 @@ void initialize(void)  /* Initialization function. */{
 
     /* Initialize event list.  Since no customers are present, the departure
        (service completion) event is eliminated from consideration. */
-	printf("	NEXT ARRIVE GENERATION\n");
+	//printf("	NEXT ARRIVE GENERATION\n");
     timeNextEvent[1] = simulationTime + generateNextInterarrive() ; //Planificacion del primer arribo
     timeNextEvent[2] = 1.0e+30; //infinito
 	
@@ -142,11 +142,14 @@ void timing(void)  /* Timing function. */{
 		nextEventType = 2;
 		simulationTime = timeNextEvent[2];
 	}
+	printf("	Simulation Time %.2f\n",simulationTime);
 	printf("	Current client: %d\n",currentClient);
 	printf("	Total client: %d\n",totalClients);
 	printf("	Queue length: %d\n",elementsInQueue);
 	printf("	Next event type %d \n",nextEventType);
-	printf("	Simulation Time %.2f\n",simulationTime);
+	printf("	Time next arrive : %.2f \n",timeNextEvent[1]);
+	printf("	Time next departure : %.2f \n",timeNextEvent[2]);
+	printf("\n");
 
     /* advance tstdlib.hhe simulation clock. */
 
@@ -158,23 +161,23 @@ void arrive(void)  /* Arrival event function. */{
 
     /* Schedule next arrival. */
     clientsTime[totalClients][0]= timeNextEvent[1];
-    printf("	client (%d) arrive %.2f\n",totalClients,clientsTime[totalClients][0]);
-	printf("	NEXT ARRIVE GENERATION\n");
+    //printf("	client (%d) arrive %.2f\n",totalClients,clientsTime[totalClients][0]);
+	//printf("	NEXT ARRIVE GENERATION\n");
     timeNextEvent[1] = simulationTime + generateNextInterarrive() ;
-    printf("	time next event: %.2f\n",timeNextEvent[1]);
+    //printf("	time next event: %.2f\n",timeNextEvent[1]);
     /* Check to see whether server is busy. */
     if (serverStatus == BUSY) {
 
         /* Server is busy, so increment number of customers in queue. */
 		averageQueueLength += elementsInQueue*(simulationTime-lastQueueEvent);
-		printf("	av queue length with %d elem: %d*(%.2f-%.2f)\n",elementsInQueue,elementsInQueue,simulationTime,lastQueueEvent);
-		printf("	acumulatedResult: %.2f\n",averageQueueLength);
+		//printf("	av queue length with %d elem: %d*(%.2f-%.2f)\n",elementsInQueue,elementsInQueue,simulationTime,lastQueueEvent);
+		//printf("	acumulatedResult: %.2f\n",averageQueueLength);
 		lastQueueEvent=simulationTime;
 		elementsInQueue++;
 		totalElementsInQueue++;
 		printf("	Sent to queue. Queue length %d\n",elementsInQueue);
-		printf("	Time next arrive : %.2f (%.2f)\n",timeNextEvent[1],timeNextEvent[1]-simulationTime);
-		printf("	Time next departure : %.2f (%.2f)\n",timeNextEvent[2],timeNextEvent[2]-simulationTime);
+		//printf("	Time next arrive : %.2f (%.2f)\n",timeNextEvent[1],timeNextEvent[1]-simulationTime);
+		//printf("	Time next departure : %.2f (%.2f)\n",timeNextEvent[2],timeNextEvent[2]-simulationTime);
         /* Check to see whether an overflow condition exists. */
 		
         if (elementsInQueue > Q_LIMIT) {
@@ -197,13 +200,13 @@ void arrive(void)  /* Arrival event function. */{
 
 
         /* Schedule a departure (service completion). */
-		printf("	NEXT DEPARTURE GENERATION\n");
+		//printf("	NEXT DEPARTURE GENERATION\n");
         timeNextEvent[2] = simulationTime + generateNextDeparture() ;
         clientsTime[totalClients][2]=timeNextEvent[2];
-        printf("	client (%d) departure %.2f\n",currentClient,clientsTime[currentClient][2]);
-        printf("	Time next arrive : %.2f (%.2f)\n",timeNextEvent[1],timeNextEvent[1]-simulationTime);
-		printf("	Next departure : %.2f (%.2f)\n", timeNextEvent[2],timeNextEvent[2]-simulationTime);
-		printf("	Simulation Time : %.2f\n",simulationTime);
+        //printf("	client (%d) departure %.2f\n",currentClient,clientsTime[currentClient][2]);
+        //printf("	Time next arrive : %.2f (%.2f)\n",timeNextEvent[1],timeNextEvent[1]-simulationTime);
+		//printf("	Next departure : %.2f (%.2f)\n", timeNextEvent[2],timeNextEvent[2]-simulationTime);
+		//printf("	Simulation Time : %.2f\n",simulationTime);
 		totalGain = totalGain + gain;		
     }
 
@@ -229,28 +232,28 @@ void depart(void)  /* Departure event function. */{
         /* The queue is nonempty, so decrement the number of customers in
            queue. */
 		averageQueueLength += elementsInQueue*(simulationTime-lastQueueEvent);
-		printf("	av queue length with %d elem: %d*(%.2f-%.2f)\n",elementsInQueue,elementsInQueue,simulationTime,lastQueueEvent);
-		printf("	acumulatedResult: %.2f\n",averageQueueLength);
+		//printf("	av queue length with %d elem: %d*(%.2f-%.2f)\n",elementsInQueue,elementsInQueue,simulationTime,lastQueueEvent);
+		//printf("	acumulatedResult: %.2f\n",averageQueueLength);
 		lastQueueEvent=simulationTime;
         elementsInQueue--;
         clientsTime[currentClient][2]=simulationTime;
-        printf("	client (%d) departure %.2f\n",currentClient,clientsTime[currentClient][2]);
+        //printf("	client (%d) departure %.2f\n",currentClient,clientsTime[currentClient][2]);
         currentClient++;
         clientsTime[currentClient][1]=simulationTime;
-        printf("	client (%d) outOFQueue %.2f\n",currentClient,clientsTime[currentClient][1]);
-		printf("	Out of queue. Queue length: %d\n",elementsInQueue);
+        //printf("	client (%d) outOFQueue %.2f\n",currentClient,clientsTime[currentClient][1]);
+		//printf("	Out of queue. Queue length: %d\n",elementsInQueue);
         /* Compute the delay of the customer who is beginning service and update
            the total delay accumulator. */
 
 
         /* Increment the number of customers delayed, and schedule departure. */
-		printf("	NEXT DEPARTURE GENERATION\n");
+		//printf("	NEXT DEPARTURE GENERATION\n");
         timeNextEvent[2] = simulationTime + generateNextDeparture();
         clientsTime[currentClient][2]=timeNextEvent[2];
-        printf("	client (%d) departure %.2f\n",currentClient,clientsTime[currentClient][2]);
-        printf("	Time next arrive : %.2f (%.2f)\n",timeNextEvent[1],timeNextEvent[1]-simulationTime);
-		printf("	Time next departure : %.2f (%.2f)\n",timeNextEvent[2],timeNextEvent[2]-simulationTime);
-		printf("	Simulation Time : %.2f\n",simulationTime);
+        //printf("	client (%d) departure %.2f\n",currentClient,clientsTime[currentClient][2]);
+        //printf("	Time next arrive : %.2f (%.2f)\n",timeNextEvent[1],timeNextEvent[1]-simulationTime);
+		//printf("	Time next departure : %.2f (%.2f)\n",timeNextEvent[2],timeNextEvent[2]-simulationTime);
+		//printf("	Simulation Time : %.2f\n",simulationTime);
     }
 }
 
@@ -316,7 +319,7 @@ void updateTimeAvgStats(void)  /* Update area accumulators for time-average
 
 float generateNextInterarrive()  {
     float rn = lcgrand(7);
-    printf("		Generated number : %.2f\n",rn);
+    //printf("		Generated number : %.2f\n",rn);
 	if (rn >= 0.0 && rn<0.05){
 			return 5;
 	}
@@ -343,7 +346,7 @@ float generateNextInterarrive()  {
 
 float  generateNextDeparture(){
     float rn = lcgrand(3);
-    printf("		Generated number : %.2f\n",rn);
+    //printf("		Generated number : %.2f\n",rn);
 	if (rn >= 0.0 && rn<0.15){
 			gain = 5000;
 			return 10;
