@@ -43,6 +43,11 @@ float queue[100];
 float last_modif_queue=0;
 float acum_longPerTime =0;
 
+// estadisticos para medir la utilizacion de los servidores
+
+float tiempo_ultimo_evento =0;
+float acum_utilizacion =0;
+
 
 total_clients=0;
 
@@ -191,6 +196,9 @@ void timing(void)  /* Timing function. */
 
 void arrive(void)  /* Arrival event function. */
 {
+	acum_utilizacion+=(sim_time-tiempo_ultimo_evento)*serversBusy;
+	tiempo_ultimo_evento=sim_time;
+	
     float delay;
 	total_clients++;
     /* Schedule next arrival. */
@@ -227,6 +235,10 @@ void arrive(void)  /* Arrival event function. */
 
 void depart(void)  /* Departure event function. */
 {
+    acum_utilizacion+=(sim_time-tiempo_ultimo_evento)*serversBusy;
+	tiempo_ultimo_evento=sim_time;
+    
+    
     //~ printf("es hora de que salga uno! :%f \n",sim_time);
     int i;
     float delay;
@@ -265,7 +277,7 @@ void report(void)  /* Report generator function. */
     
     
     // \\Server utilization
-
+	printf("La utilizacion de cada servidor es de %f \n",acum_utilizacion /(sim_time*CANTSERVERS));
 
 }
 
