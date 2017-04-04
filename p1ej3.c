@@ -8,7 +8,7 @@
 #define Q_LIMIT 100  /* Limit on queue length. */
 #define BUSY      1  /* Mnemonics for server's being busy */
 #define IDLE      0  /* and idle. */
-#define ENDTIME	100
+#define ENDTIME	300
 
 
 void  initialize(void);
@@ -27,10 +27,13 @@ float simulationTime;
 float timeLastEvent;
 float gain;
 float totalGain;
+float lastQueueEvent;
 float clientsTime[Q_LIMIT][5]; //clientsTime[clients][times(arrive,departureOfQueue,departure,timeInQueue,totalTime)]
+float averageQueueLength;
 
 int serverStatus;
 int elementsInQueue;
+int totalElementsInQueue;
 int elementsTimeInQueue[Q_LIMIT];
 int nextEventType;
 int totalClients;
@@ -93,17 +96,20 @@ void initialize(void)  /* Initialization function. */{
     /* Initialize the simulation clock. */
 
     simulationTime = 0.0;
-    totalGain = 0.0;
-    currentClient=0;
-    totalClients=0;
+    
     /* Initialize the state variables. */
 
     serverStatus   = IDLE;
     elementsInQueue  = 0;
+    totalElementsInQueue = 0;
     timeLastEvent = 0.0;
+    lastQueueEvent = 0.0;
+    totalGain = 0.0;
+    currentClient=0;
+    totalClients=0;
 
     // Initialize the statistical counters. num_custs_delayed, total_of_delays, area_num_in_q, area_server_status
-
+	averageQueueLength = 0.0;
      
 
     /* Initialize event list.  Since no customers are present, the departure
@@ -136,8 +142,9 @@ void timing(void)  /* Timing function. */{
 		nextEventType = 2;
 		simulationTime = timeNextEvent[2];
 	}
-	printf("	Actual client: %d\n",currentClient);
+	printf("	Current client: %d\n",currentClient);
 	printf("	Total client: %d\n",totalClients);
+	printf("	Queue length: %d\n",elementsInQueue);
 	printf("	Next event type %d \n",nextEventType);
 	printf("	Simulation Time %.2f\n",simulationTime);
 
@@ -159,8 +166,12 @@ void arrive(void)  /* Arrival event function. */{
     if (serverStatus == BUSY) {
 
         /* Server is busy, so increment number of customers in queue. */
-
-		elementsInQueue = elementsInQueue++;
+		averageQueueLength += elementsInQueue*(simulationTime-lastQueueEvent);
+		printf("	av queue length with %d elem: %d*(%.2f-%.2f)\n",elementsInQueue,elementsInQueue,simulationTime,lastQueueEvent);
+		printf("	acumulatedResult: %.2f\n",averageQueueLength);
+		lastQueueEvent=simulationTime;
+		elementsInQueue++;
+		totalElementsInQueue++;
 		printf("	Sent to queue. Queue length %d\n",elementsInQueue);
 		printf("	Time next arrive : %.2f (%.2f)\n",timeNextEvent[1],timeNextEvent[1]-simulationTime);
 		printf("	Time next departure : %.2f (%.2f)\n",timeNextEvent[2],timeNextEvent[2]-simulationTime);
@@ -217,7 +228,11 @@ void depart(void)  /* Departure event function. */{
 
         /* The queue is nonempty, so decrement the number of customers in
            queue. */
-        elementsInQueue = elementsInQueue -1;
+		averageQueueLength += elementsInQueue*(simulationTime-lastQueueEvent);
+		printf("	av queue length with %d elem: %d*(%.2f-%.2f)\n",elementsInQueue,elementsInQueue,simulationTime,lastQueueEvent);
+		printf("	acumulatedResult: %.2f\n",averageQueueLength);
+		lastQueueEvent=simulationTime;
+        elementsInQueue--;
         clientsTime[currentClient][2]=simulationTime;
         printf("	client (%d) departure %.2f\n",currentClient,clientsTime[currentClient][2]);
         currentClient++;
@@ -246,7 +261,7 @@ void report(void)  /* Report generator function. */{
 	float avTimeInQueue=0.0;
 	float serverUtilizationTime = 0.0;
 
-	printf("Simulation total time : %.2f\n",simulationTime);
+	printf("Simulation total time : %.2f min.\n",simulationTime);
 	//printf("Actual client: %d\n",currentClient);
 	printf("Total clients : %d\n",totalClients);
 	printf("Gain: $ %.2f\n",totalGain);
@@ -256,24 +271,24 @@ void report(void)  /* Report generator function. */{
 	while (i<=totalClients){
 		clientsTime[i][3]= clientsTime[i][1] - clientsTime[i][0];
 		clientsTime[i][4]= clientsTime[i][2] - clientsTime[i][0];
-		printf("Client %d: Arrive: %.2f, outOfQueue: %.2f, departure: %.2f,\n timeInQueue: %.2f, totalTime: %.2f\n",i,clientsTime[i][0],clientsTime[i][1],clientsTime[i][2],clientsTime[i][3],clientsTime[i][4]);
+		//printf("Client %d: Arrive: %.2f, outOfQueue: %.2f, departure: %.2f,\n timeInQueue: %.2f, totalTime: %.2f\n",i,clientsTime[i][0],clientsTime[i][1],clientsTime[i][2],clientsTime[i][3],clientsTime[i][4]);
 		avTimeInQueue = avTimeInQueue + clientsTime[i][3];
 		avTimeInTrade = avTimeInTrade + clientsTime[i][4];
-		//printf("server utilization time calclulation\n");
-		//printf("client out of queue: %.2f | client departure: %.2f | difference: %.2f\n",(clientsTime[i][1]), (clientsTime[i][2]),(clientsTime[i][2] - clientsTime[i][1]));
 		serverUtilizationTime = serverUtilizationTime + (clientsTime[i][2] - clientsTime[i][1]);
 		i++;
 	}
 	//Average delay in trade
 	avTimeInTrade = avTimeInTrade/totalClients;
-	printf("Average delay in trade: %.2f\n",avTimeInTrade);
+	printf("Average delay in trade: %.2f min.\n",avTimeInTrade);
 	
     //Average delay in queue
-    avTimeInQueue = avTimeInQueue/totalClients;
-	printf("Average delay in queue: %.2f\n",avTimeInQueue);
+    avTimeInQueue = avTimeInQueue/totalElementsInQueue;
+	printf("Average delay in queue: %.2f min.\n",avTimeInQueue);
 
     //Average number in queue
-
+	averageQueueLength = averageQueueLength/simulationTime;
+	printf("Average queue legth: %.2f\n", averageQueueLength);
+	
     //Server utilization
 	printf("Server utilization: %.2f percent\n",serverUtilizationTime/simulationTime*100);
 
