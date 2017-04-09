@@ -34,6 +34,7 @@ float totalGain;
 float lastQueueEvent;
 float clientsTime[Q_LIMIT][5]; //clientsTime[clients][times(arrive,departureOfQueue,departure,timeInQueue,totalTime)]
 float averageQueueLength;
+float averageServerUse;
 
 int serverStatus;
 int elementsInQueue;
@@ -54,8 +55,6 @@ int main()  /* Main function. */{
 	while (simulationTime <= ENDTIME){
 		printf("TIMING \n");
 		timing();
-
-		updateTimeAvgStats();
 
 		switch (nextEventType) {
 			case 1:
@@ -106,6 +105,7 @@ void initialize(void){
     totalClients=0;
 
 	averageQueueLength = 0.0;
+	averageServerUse = 0.0;
      
     timeNextEvent[1] = simulationTime + generateNextInterarrive();
 
@@ -122,6 +122,7 @@ void initialize(void){
 void timing(void){
 
     nextEventType = 0;
+    timeLastEvent = simulationTime;
     
     if (timeNextEvent[1]<=nextDepartures[0] && timeNextEvent[1]<=ENDTIME){
 		nextEventType = 1;
@@ -158,9 +159,6 @@ void arrive(void){
 		
 		averageQueueLength += elementsInQueue*(simulationTime-lastQueueEvent);
 		
-		//printf("	av queue length with %d elem: %d*(%.2f-%.2f)\n",elementsInQueue,elementsInQueue,simulationTime,lastQueueEvent);
-		//printf("	acumulatedResult: %.2f\n",averageQueueLength);
-		
 		lastQueueEvent=simulationTime;
 		elementsInQueue++;
 		totalElementsInQueue++;
@@ -177,8 +175,9 @@ void arrive(void){
     }
 
     else {
-		float auxDeparture;
+		averageServerUse += usedServers*(simulationTime - timeLastEvent);
 		
+		float auxDeparture;
 		currentClient++;
 		clientsTime[totalClients][1]=simulationTime;
 
@@ -202,6 +201,8 @@ void arrive(void){
 
 void depart(void){
     if (elementsInQueue == 0) {
+		averageServerUse += usedServers * (simulationTime-timeLastEvent);
+
         //printf(" 	DEPARTURE OUT: \n");
 		departureOut();
 		usedServers--;
@@ -274,14 +275,8 @@ void report(void){
 	printf("Average queue legth: %.2f\n", averageQueueLength);
 	
     //Server utilization
-	printf("Server utilization: %.2f percent\n",serverUtilizationTime/(simulationTime*SERVERS)*100);
+	printf("Server utilization: %.2f percent\n",averageServerUse/(simulationTime*SERVERS)*100);
 
-}
-
-
-void updateTimeAvgStats(void){
-    timeSinceLastEvent = simulationTime - timeLastEvent;
-    timeLastEvent       = simulationTime;
 }
 
 void departureIn(float dep){
