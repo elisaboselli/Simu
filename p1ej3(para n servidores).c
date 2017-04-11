@@ -5,9 +5,9 @@
 #include <stdlib.h>
 #include "lcgrand.h"  /* Header file for random-number generator. */
 
-#define SERVERS 2	 /*Number of servers.*/
-#define Q_LIMIT 100  /* Limit on queue length. */
-#define ENDTIME	300	 /*Limit time (if there are clients in queue, they will be attended)*/
+#define SERVERS 1	 /*Number of servers.*/
+#define Q_LIMIT 1000  /* Limit on queue length. */
+#define ENDTIME	3000	 /*Limit time (if there are clients in queue, they will be attended)*/
 
 
 void  initialize(void);
@@ -71,7 +71,7 @@ int main()  /* Main function. */{
     }
     
     while(currentClient<=totalClients){
-		
+		timing();
 		if(currentClient==totalClients){
 			printf("Last client departure\n");
 		}
@@ -155,6 +155,8 @@ void arrive(void){
     
     printf("	time next arrive: %.2f\n",timeNextEvent[1]);
     
+    averageServerUse += usedServers*(simulationTime - timeLastEvent);
+    
     if (usedServers==SERVERS) {
 		
 		averageQueueLength += elementsInQueue*(simulationTime-lastQueueEvent);
@@ -175,8 +177,6 @@ void arrive(void){
     }
 
     else {
-		averageServerUse += usedServers*(simulationTime - timeLastEvent);
-		
 		float auxDeparture;
 		currentClient++;
 		clientsTime[totalClients][1]=simulationTime;
@@ -200,8 +200,9 @@ void arrive(void){
 
 
 void depart(void){
+	averageServerUse += usedServers * (simulationTime-timeLastEvent);
+
     if (elementsInQueue == 0) {
-		averageServerUse += usedServers * (simulationTime-timeLastEvent);
 
         //printf(" 	DEPARTURE OUT: \n");
 		departureOut();
