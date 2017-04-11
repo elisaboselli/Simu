@@ -8,7 +8,7 @@
 #define Q_LIMIT 100  /* Limit on queue length. */
 #define BUSY      1  /* Mnemonics for server's being busy */
 #define IDLE      0  /* and idle. */
-#define CANTSERVERS 2
+#define CANTSERVERS 1
 #define MAXTIME 1000000
 
 void  initialize(void);
@@ -277,7 +277,7 @@ void report(void)  /* Report generator function. */
     
     
     // \\Server utilization
-	printf("La utilizacion de cada servidor es de %f \n",acum_utilizacion /(sim_time*CANTSERVERS));
+	printf("La utilizacion de cada servidor es de %.2f % \n",(acum_utilizacion /(sim_time*CANTSERVERS))*100);
 
 }
 
