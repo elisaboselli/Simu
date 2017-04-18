@@ -4,15 +4,12 @@
 #include <stdlib.h>
 #include <math.h>
 #include "lcgrand.h"  /* Header file for random-number generator. */
-#include <string.h>
 
 #define Q_LIMIT 1000  /* Limit on queue length. */
 #define BUSY      1  /* Mnemonics for server's being busy */
 #define IDLE      0  /* and idle. */
-#define CANTSERVERS 5
-#define MAXTIME 100000000000
-#define SHOWS_ENABLED 0
-
+#define CANTSERVERS 1
+#define MAXTIME 1000000
 
 void  initialize(void);
 void  timing(void);
@@ -25,20 +22,7 @@ float gen_next_interarrive(void);
 float  gen_next_depart(void);
 
 
-
-typedef struct TipoCliente
-{
-	
-   float tiempoarribo;
-   float tiemposalida;
-   char id[20];
-} TCliente;
-
-
-
-
-
-TCliente departs[CANTSERVERS];
+float departs[CANTSERVERS];  
 // numero de servidores, estos guardan las salidas!
 int serversBusy =0;
 int num_custs_delayed;
@@ -52,10 +36,10 @@ float time_next_event[3];
 
 //~ estadisticos para medir el tiempo de espera medio en cola
 float total_clients_in_queue=0;
-double acum_queue_waittime =0;
-TCliente queue[100];
+float acum_queue_waittime =0;
+float queue[100];
 
-//~ estadisticos para medir longitud media en cola
+//~ estadisticos para medir longitud media de cola
 float last_modif_queue=0;
 float acum_longPerTime =0;
 
@@ -65,16 +49,7 @@ float tiempo_ultimo_evento =0;
 float acum_utilizacion =0;
 
 
-//estadisticos para medir tiempo medio en el sistema
-float acum_timeinsystem =0;
-
-int total_clients=0;
-
-TCliente clientinf(){
-	TCliente aux;
-	strcpy(aux.id, "[]");
-	return aux;
-}
+total_clients=0;
 
 
 
@@ -83,63 +58,19 @@ void init_servers(float a){
 	
   int i =0;
   while (i<CANTSERVERS){
-    departs[i] = clientinf();
+    departs[i] = a;
     i++;
   }
 }
-
-void reorderdeparts (int pos){
-  while (pos<CANTSERVERS-1){
-	  //~ printf("Entro al while de reorder pos=%i\n",pos);
-    departs[pos] = departs[pos+1];
-    pos++;
-  }
-}
-
-void reorderqueue (int pos,int fin){
-  while (pos<fin-1){
-	  //~ printf("Entro al while de reorder pos=%i\n",pos);
-    queue[pos] = queue[pos+1];
-    pos++;
-  }
-}
-
-void makedeparture(){
-  int aux = 1;
-  int i=0;
-  while (i<serversBusy && aux==1){
-    if (departs[i].tiemposalida==sim_time){
-	  //~ printf("Entro al if de makedeparture! i=%i\n",i);
-      
-      acum_timeinsystem += (sim_time-departs[i].tiempoarribo);
-      total_clients++;
-      
-      aux = 0;
-      reorderdeparts(i);
-
-      serversBusy--;
-      server_status =0;
-      
-      
-    }
-    //~ printf("while de makedeparture! i=%i\n",i);
-    i++;
-  }
-  //~ printf("Salio del while de make departure!");
-}
-
-
 
 void encolar(){
-	//printf("encolar!\n");
+	printf("encolar!\n");
 	if(num_in_q < Q_LIMIT){
 	
 	acum_longPerTime+=num_in_q*(sim_time-last_modif_queue);
 	last_modif_queue=sim_time;
 	
-	
-	TCliente aux; strcpy(aux.id, "Cliente!"); aux.tiempoarribo = sim_time;
-	queue[num_in_q] =aux;
+	queue[num_in_q] = sim_time;
 	num_in_q++;
 	
 	total_clients_in_queue++;
@@ -148,32 +79,65 @@ void encolar(){
 	
 	}
 
-TCliente desencolar(){
-	//printf("desencolar!\n");
-	TCliente auxresultado=clientinf();
+void desencolar(){
+	printf("desencolar!\n");
 	if(num_in_q>0){		
 		acum_longPerTime+=num_in_q*(sim_time-last_modif_queue);
 		last_modif_queue=sim_time;
 		
-		acum_queue_waittime+= (sim_time-queue[0].tiempoarribo);
-		
-		auxresultado=queue[0];
-		
-		
+		acum_queue_waittime+= (sim_time-queue[0]);
 		reorderqueue(0,num_in_q-1);
 		num_in_q--;
 		}
-	return auxresultado;
+	
 	}
 
 
 
+int main()  /* Main function. */{
+    /* Initialize the simulation. */
+
+    initialize();
+	
+    /* Run the simulation while more delays are still needed. */
+
+    while (sim_time < MAXTIME) {
+		printf("Hora actual: %f \n",sim_time);
+        /* Determine the next event. */
+		show_next_events();
+        timing();
+
+        /* Update time-average statistical accumulators. */
+
+        //update_time_avg_stats();
+
+        /* Invoke the appropriate event function. */
+
+        switch (next_event_type) {
+            case 1:
+				//~ printf("el prox elemento sera un arribo! \n");
+                arrive();
+                break;
+            case 2:
+                //~ printf("el prox elemento sera una salida! \n");
+                depart();
+                break;
+        }
+        num_custs_delayed++;
+        printf("\n\n\n\n\n\n");
+		// getchar (); 
+    }
+
+    /* Invoke the report generator and end the simulation. */
+
+    report();
+
+
+    return 0;
+}
 
 
 void initialize(void)  /* Initialization function. */{
-    printf ("TIEMPO MAXIMO: %i ", MAXTIME );
-    
-    
     /* Initialize the simulation clock. */
     sim_time = 0.0;
     /* Initialize the state variables. */
@@ -214,9 +178,9 @@ void timing(void)  /* Timing function. */
     
     i=0;
     while(i<serversBusy){
-      if (min_time_next_event > departs[i].tiemposalida){
+      if (min_time_next_event > departs[i]){
           next_event_type=2;
-          min_time_next_event = departs[i].tiemposalida;
+          min_time_next_event = departs[i];
 
       }
       i++;
@@ -226,33 +190,17 @@ void timing(void)  /* Timing function. */
     /* advance the simulation clock. */
 
     sim_time = min_time_next_event;
-
-	if ((total_clients % 100)==0){
-		report();
-		}
 	
 }
-void add_to_departs(TCliente clienteEntrando){
- //~ printf("ENTRO EN ADD_TO_DEPARTS, los servidores ocupados son:%i \n",serversBusy);
- //~ printf("el depart que se agregara es a las: %f\n",timeofdepart);
- //~ printf("%f\n",sim_time+timeofdepart);
- 
- 
- 
- departs[serversBusy] = clienteEntrando;
- serversBusy++;
- if (serversBusy == CANTSERVERS){
-    server_status = 1 ;
- }
-}
 
-void arrive(void){  /* Arrival event function. */
 
+void arrive(void)  /* Arrival event function. */
+{
 	acum_utilizacion+=(sim_time-tiempo_ultimo_evento)*serversBusy;
 	tiempo_ultimo_evento=sim_time;
 	
-    
-	
+    float delay;
+	total_clients++;
     /* Schedule next arrival. */
 	//~ printf("acaba de arribar uno ! son las: %f \n",sim_time);
     time_next_event[1] = sim_time + gen_next_interarrive();
@@ -278,9 +226,8 @@ void arrive(void){  /* Arrival event function. */
         /* Server libre, tener en  cuenta la entidad que pasa directamente al server para los calculos estadisticos */
         /* Schedule a departure (service completion). */
         float auxfloat =gen_next_depart();
-        //printf("el auxfloat es:%f \n",auxfloat);
-        TCliente nuevocliente;strcpy(nuevocliente.id, "Cliente!"); nuevocliente.tiempoarribo=sim_time;nuevocliente.tiemposalida=(sim_time+auxfloat);
-        add_to_departs(nuevocliente);
+        printf("el auxfloat es:%f \n",auxfloat);
+        add_to_departs(auxfloat);
     
     }
 }
@@ -292,24 +239,21 @@ void depart(void)  /* Departure event function. */
 	tiempo_ultimo_evento=sim_time;
     
     
-    total_clients++;
-    
-    
-    
     //~ printf("es hora de que salga uno! :%f \n",sim_time);
-
+    int i;
+    float delay;
     /* Check to see whether the queue is empty. */
     //~ printf("La cola es de :%i \n",num_in_q);
-    makedeparture ();
-    if (num_in_q != 0) {
-        TCliente aux = desencolar();
-        aux.tiemposalida = gen_next_depart()+sim_time;
-        departs[serversBusy] = aux;
-		serversBusy++;
-		if (serversBusy == CANTSERVERS){
-			server_status = 1 ;
-		 }
-        
+    if (num_in_q == 0) {
+      makedeparture ();
+        /* The queue is empty so make the server idle and eliminate the
+           departure (service completion) event from consideration. */
+
+    }else {
+		//~ printf("se va uno y entra otro que estaba en la cola, ahora la cola es de  :%i \n",num_in_q);
+        makedeparture();
+        add_to_departs(gen_next_depart());
+        desencolar();
         /* The queue is nonempty, so decrement the number of customers in
            queue. */
 
@@ -323,20 +267,17 @@ void depart(void)  /* Departure event function. */
 void report(void)  /* Report generator function. */
 {
     /* Compute and write estimates of desired measures of performance. */
-	printf("El tiempo promedio en el sistema %f \n",acum_timeinsystem/total_clients);
+
     // \\Average delay in queue
-		
-    printf("El tiempo promedio de espera en la cola es de %f \n",acum_queue_waittime/total_clients_in_queue);
+    printf("El numero promedio de espera en la cola es de %f \n",acum_queue_waittime/total_clients_in_queue);
     //
     // \\Average number in queue
     //
-
     printf("La longitud promedio de la cola es de %f \n",acum_longPerTime /sim_time);
     
     
     // \\Server utilization
 	printf("La utilizacion de cada servidor es de %.2f % \n",(acum_utilizacion /(sim_time*CANTSERVERS))*100);
-
 
 }
 
@@ -364,15 +305,57 @@ void update_time_avg_stats(void)  /* Update area accumulators for time-average
 
 
 
+void add_to_departs(double timeofdepart){
+ //~ printf("ENTRO EN ADD_TO_DEPARTS, los servidores ocupados son:%i \n",serversBusy);
+ //~ printf("el depart que se agregara es a las: %f\n",timeofdepart);
+ //~ printf("%f\n",sim_time+timeofdepart);
+ departs[serversBusy] = sim_time+timeofdepart;
+ serversBusy++;
+ if (serversBusy == CANTSERVERS){
+    server_status = 1 ;
+ }
+}
+void reorderdeparts (int pos){
+  while (pos<CANTSERVERS-1){
+	  //~ printf("Entro al while de reorder pos=%i\n",pos);
+    departs[pos] = departs[pos+1];
+    pos++;
+  }
+}
 
+void reorderqueue (int pos,int fin){
+  while (pos<fin-1){
+	  //~ printf("Entro al while de reorder pos=%i\n",pos);
+    queue[pos] = queue[pos+1];
+    pos++;
+  }
+}
 
+void makedeparture(){
+  int aux = 1;
+  int i=0;
+  while (i<serversBusy && aux==1){
+    if (departs[i]==sim_time){
+	  //~ printf("Entro al if de makedeparture! i=%i\n",i);
+      
+      aux = 0;
+      reorderdeparts(i);
+
+      serversBusy--;
+      server_status =0;
+    }
+    //~ printf("while de makedeparture! i=%i\n",i);
+    i++;
+  }
+  //~ printf("Salio del while de make departure!");
+}
 
 
 float gen_next_interarrive()  {
    
-    float rn;
+    float aux,rn;
     rn =lcgrand(7);
-    //printf("Generated number : %f\n",rn);
+    printf("Generated number : %f\n",rn);
 	if (rn >= 0.0 && rn<0.05){
 			return 5;
 	}
@@ -399,9 +382,9 @@ float gen_next_interarrive()  {
 
 float gen_next_depart()  {
     //~ printf("Estamos generando el proximo depart!\n");
-    float rn;
+    float aux,rn;
     rn = lcgrand(3);
-    //printf("Generated number : %f\n",rn);
+    printf("Generated number : %f\n",rn);
 	if (rn >= 0.0 && rn<0.15){
 			return 10;
 			
@@ -424,67 +407,20 @@ float gen_next_depart()  {
 }
 
 void show_next_events(){
-	if (SHOWS_ENABLED == 1){
-		printf("\n\n\n\n\n\n");
-		printf("ESTADO ACTUAL:\n");
-		printf("Prox entrada: %f\n",time_next_event[1]);
-		int i =0;
-		while(i<serversBusy){
-			printf("Prox salida(%i): %f\n",i,departs[i].tiemposalida);
-			i++;
-		}
-		while(i<CANTSERVERS){
-			printf("Prox salida(%i): INF\n",i);
-			i++;
-		}
-	   printf("Cola:%i\n",num_in_q);
+	printf("ESTADO ACTUAL:\n");
+	printf("Prox entrada: %f\n",time_next_event[1]);
+	int i =0;
+	while(i<serversBusy){
+		printf("Prox salida(%i): %f\n",i,departs[i]);
+		i++;
 	}
-	
+	while(i<CANTSERVERS){
+		printf("Prox salida(%i): INF\n",i);
+		i++;
+	}
+   printf("Cola:%i\n",num_in_q);
 
 	
 	
 	
-}
-
-
-int main()  /* Main function. */{
-    /* Initialize the simulation. */
-
-    initialize();
-	
-    /* Run the simulation while more delays are still needed. */
-
-    while (sim_time < MAXTIME) {
-		
-        /* Determine the next event. */
-		show_next_events();
-        timing();
-
-        /* Update time-average statistical accumulators. */
-
-        //update_time_avg_stats();
-
-        /* Invoke the appropriate event function. */
-
-        switch (next_event_type) {
-            case 1:
-				//~ printf("el prox elemento sera un arribo! \n");
-                arrive();
-                break;
-            case 2:
-                //~ printf("el prox elemento sera una salida! \n");
-                depart();
-                break;
-        }
-        num_custs_delayed++;
-        
-		// getchar (); 
-    }
-
-    /* Invoke the report generator and end the simulation. */
-
-    report();
-
-
-    return 0;
 }
