@@ -5,9 +5,9 @@
 #include <stdlib.h>
 #include "lcgrand.h"  /* Header file for random-number generator. */
 
-#define SERVERS 1	 /*Number of servers.*/
-#define Q_LIMIT 1000  /* Limit on queue length. */
-#define ENDTIME	3000	 /*Limit time (if there are clients in queue, they will be attended)*/
+#define SERVERS 2	 /*Number of servers.*/
+#define Q_LIMIT 100  /* Limit on queue length. */
+#define ENDTIME	300	 /*Limit time (if there are clients in queue, they will be attended)*/
 
 
 void  initialize(void);
@@ -70,9 +70,9 @@ int main()  /* Main function. */{
 		//debug();
     }
     
-    while(currentClient<=totalClients){
+    while(currentClient<totalClients){
 		timing();
-		if(currentClient==totalClients){
+		if(currentClient==totalClients-1){
 			printf("Last client departure\n");
 		}
 		
@@ -80,7 +80,6 @@ int main()  /* Main function. */{
 			printf("Client in queue departure\n");
 			depart();
 		}
-		
 		currentClient++;
 	}
 	
@@ -211,7 +210,7 @@ void depart(void){
     }
     else {
 		averageQueueLength += elementsInQueue*(simulationTime-lastQueueEvent);
-		
+				
 		lastQueueEvent=simulationTime;
         elementsInQueue--;
         clientsTime[currentClient][2]=simulationTime;
@@ -274,6 +273,9 @@ void report(void){
     //Average number in queue
 	averageQueueLength = averageQueueLength/simulationTime;
 	printf("Average queue legth: %.2f\n", averageQueueLength);
+	
+	//Average clients number
+	printf("Average clients number: %.2f\n",averageServerUse/simulationTime);
 	
     //Server utilization
 	printf("Server utilization: %.2f percent\n",averageServerUse/(simulationTime*SERVERS)*100);
