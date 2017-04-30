@@ -5,9 +5,9 @@
 #include <stdlib.h>
 #include "lcgrand.h"  /* Header file for random-number generator. */
 
-#define SERVERS 2	 /*Number of servers.*/
-#define Q_LIMIT 100  /* Limit on queue length. */
-#define ENDTIME	300	 /*Limit time (if there are clients in queue, they will be attended)*/
+#define SERVERS 1	 /*Number of servers.*/
+#define Q_LIMIT 1000  /* Limit on queue length. */
+#define ENDTIME	3000	 /*Limit time (if there are clients in queue, they will be attended)*/
 
 
 void  initialize(void);
