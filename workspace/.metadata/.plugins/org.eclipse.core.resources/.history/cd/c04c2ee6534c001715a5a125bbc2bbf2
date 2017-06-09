@@ -1,0 +1,41 @@
+package main;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Main {
+
+  final static double GRAVITY = 0.1;
+  final static double RESISTANCE_COEFFICIENT = 0.5;
+  final static double MASS = 1.0;
+  final static double TIME = 1.0;
+  final static double EULER_STEP = 0.02;
+  final static String FILE = "plot.dat";
+
+  public static void main(String[] args) {
+
+    double t = 0;
+    double v = 0;
+
+    File file = new File(FILE);
+    if (!file.exists()) {
+      try {
+        file.createNewFile();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+    FileWriter fw = new FileWriter(file);
+    BufferedWriter bw = new BufferedWriter(file);
+
+    while (t <= TIME) {
+      if (t == 0) {
+
+      } else {
+
+      }
+    }
+  }
+}
