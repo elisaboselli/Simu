@@ -4,50 +4,59 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 public class Main {
 
-  final static double GRAVITY = 0.1;
-  final static double RESISTANCE_COEFFICIENT = 0.5;
-  final static double MASS = 1.0;
-  final static double TIME = 1.0;
-  final static double EULER_STEP = 0.02;
+  final static BigDecimal GRAVITY = new BigDecimal("0.1");
+  final static BigDecimal RESISTANCE_COEFFICIENT = new BigDecimal("0.5");
+  final static BigDecimal MASS = new BigDecimal("1.0");
+  final static BigDecimal TIME = new BigDecimal("1.0");
+  final static BigDecimal EULER_STEP = new BigDecimal("0.02");
   final static String FILE = "plot.dat";
 
   public static void main(String[] args) throws IOException {
+    Boolean firstTime = true;
 
-    double t = 0;
-    double previousVelocity = 0;
-    double currentVelocity = 0;
+    BigDecimal t = new BigDecimal("0");
+    t = t.setScale(2, BigDecimal.ROUND_HALF_UP);
+    BigDecimal previousVelocity = new BigDecimal("0");
+    previousVelocity = previousVelocity.setScale(4, BigDecimal.ROUND_HALF_EVEN);
+    BigDecimal currentVelocity = new BigDecimal("0");
+    currentVelocity = currentVelocity.setScale(4, BigDecimal.ROUND_HALF_EVEN);
 
     File file = new File(FILE);
     if (!file.exists()) {
       file.createNewFile();
     }
-    FileWriter fw = null;
-    fw = new FileWriter(file);
+    FileWriter fw = new FileWriter(file);
 
     BufferedWriter bw = new BufferedWriter(fw);
 
-    while (t <= TIME) {
-      if (t == 0) {
+    while (t.compareTo(TIME) < 1) {
+      if (firstTime) {
         System.out.println("(Time,Velocity)");
         bw.write("#Time   Velocity");
-        System.out.println("(" + t + "," + currentVelocity + ")");
-        bw.write(t + " " + currentVelocity);
-        previousVelocity = currentVelocity;
+        bw.newLine();
+        firstTime = false;
       } else {
         currentVelocity = applyEuler(previousVelocity);
-        System.out.println("(" + t + "," + currentVelocity + ")");
-        bw.write(t + " " + currentVelocity);
-        previousVelocity = currentVelocity;
+        currentVelocity = currentVelocity.setScale(4, BigDecimal.ROUND_HALF_EVEN);
       }
-      t = t + EULER_STEP;
+      System.out.println("(" + t + "," + currentVelocity + ")");
+      bw.write(t + " " + currentVelocity);
+      previousVelocity = currentVelocity;
+      bw.newLine();
+      previousVelocity = previousVelocity.setScale(4, BigDecimal.ROUND_HALF_EVEN);
+      t = t.add(EULER_STEP);
     }
     bw.close();
   }
 
-  private static double applyEuler(double v) {
-    return (v + (EULER_STEP * (GRAVITY - ((RESISTANCE_COEFFICIENT / MASS) * v))));
+  private static BigDecimal applyEuler(BigDecimal v) {
+    // return v;
+    return (v.add((EULER_STEP.multiply((GRAVITY.subtract(((RESISTANCE_COEFFICIENT.divide(MASS))
+        .multiply(v))))))));
   }
+
 }
