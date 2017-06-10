@@ -6,18 +6,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
 
-import euler.Velocity;
-
 /**
  * @author Elisa Boselli
  *
  */
-public class Main2 {
+public class BasicTesting {
 
   final static BigDecimal GRAVITY = new BigDecimal("0.1");
   final static BigDecimal RESISTANCE_COEFFICIENT = new BigDecimal("0.5");
   final static BigDecimal MASS = new BigDecimal("1.0");
-
   final static BigDecimal TIME = new BigDecimal("1.0");
   final static BigDecimal EULER_STEP = new BigDecimal("0.02");
   final static String FILE = "plot.dat";
@@ -46,8 +43,6 @@ public class Main2 {
 
     BufferedWriter bw = new BufferedWriter(fw);
 
-    Velocity vFunc = new Velocity(GRAVITY, RESISTANCE_COEFFICIENT, MASS);
-
     while (t.compareTo(TIME) < 1) {
       if (firstTime) {
         System.out.println("(Time,Velocity)");
@@ -55,7 +50,7 @@ public class Main2 {
         bw.newLine();
         firstTime = false;
       } else {
-        currentVelocity = vFunc.applyEuler(previousVelocity, EULER_STEP);
+        currentVelocity = applyEuler(previousVelocity);
         currentVelocity = currentVelocity.setScale(8, BigDecimal.ROUND_HALF_EVEN);
       }
       System.out.println("(" + t + "," + currentVelocity + ")");
@@ -66,6 +61,18 @@ public class Main2 {
       t = t.add(EULER_STEP);
     }
     bw.close();
+  }
+
+  /**
+   * Gets the next function's value using the Euler's technique.
+   * 
+   * @param previousValue
+   *          - Previous function's value.
+   * @return (BigDecimal) Next function's value.
+   */
+  private static BigDecimal applyEuler(BigDecimal v) {
+    return (v.add((EULER_STEP.multiply((GRAVITY.subtract(((RESISTANCE_COEFFICIENT.divide(MASS))
+        .multiply(v))))))));
   }
 
 }

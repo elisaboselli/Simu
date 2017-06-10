@@ -1,0 +1,15 @@
+#!/bin/bash
+
+clear
+
+# Execute Parachute
+# Parameters: Gravity, Resistance Coefficent, Mass, Euler Step, Time
+# Without parameters it uses the values: 0.1, 0.5, 1, 0.02, 1
+java -jar Parachute.jar "0.1" "0.5" "1" "0.02" "1"
+
+echo "Press any key to exit..."
+
+# Plot the results
+gnuplot -e "set title \"Parachute\"; set xlabel \"Time\"; set ylabel \"Velocity\"; plot \"parachute.dat\" w linespoints lc rgb \"purple\"; pause -1"
+
+exit

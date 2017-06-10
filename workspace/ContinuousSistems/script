@@ -1,0 +1,10 @@
+#!/bin/bash
+
+clear
+echo "The script starts now"
+
+echo "Hi user"
+
+gnuplot -e "plot cos(x); pause -1"
+
+exit

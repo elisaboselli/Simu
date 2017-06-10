@@ -40,10 +40,15 @@ public final class Velocity extends Euler {
    * @return (BigDecimal) Derivative application.
    */
   @Override
-  protected BigDecimal applyDerivative(BigDecimal previousVelocity) throws IllegalArgumentException {
-    BigDecimal result = gravity.subtract(((resistanceCoefficient.divide(mass))
-        .multiply(previousVelocity)));
-    return result;
+  protected BigDecimal applyDerivative(BigDecimal... previousVelocity)
+      throws IllegalArgumentException {
+    if (previousVelocity.length == 1) {
+      BigDecimal result = gravity.subtract(((resistanceCoefficient.divide(mass))
+          .multiply(previousVelocity[0])));
+      return result;
+    } else {
+      throw new IllegalArgumentException();
+    }
   }
 
   /**
