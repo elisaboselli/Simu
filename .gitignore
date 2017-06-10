@@ -8,6 +8,8 @@
 *.so
 /bin
 /EOSimulator
+/.metadata
+workspace/.metadata
 
 # Packages #
 ############
