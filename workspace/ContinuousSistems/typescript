@@ -1,0 +1,683 @@
+Script iniciado (sáb 10 jun 2017 16:18:09 ART
+)]0;koodu@koodu: ~/Elisa/Simu/workspace/ContinuousSistems[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu/workspace/ContinuousSistems[00m$ [K]0;koodu@koodu: ~/Elisa/Simu/workspace/ContinuousSistems[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu/workspace/ContinuousSistems[00m$ chmos[Kd u+x scriot[K[Kpt
+]0;koodu@koodu: ~/Elisa/Simu/workspace/ContinuousSistems[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu/workspace/ContinuousSistems[00m$ chmod u+x scriptjava -jar ejs_LotkaVoolterra.jar [A]0;koodu@koodu: ~/Elisa/Simu/workspace/ContinuousSistems[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu/workspace/ContinuousSistems[00m$ [7Pll | grep ejs
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kscd Descargas/[K[K[K[K[K[K[K[K[K[K[K[K[K.[K./d[Ks
+script  src/    
+]0;koodu@koodu: ~/Elisa/Simu/workspace/ContinuousSistems[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu/workspace/ContinuousSistems[00m$ ./sr[Kcript 
+[H[2JThe script starts now
+Hi user
+]0;koodu@koodu: ~/Elisa/Simu/workspace/ContinuousSistems[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu/workspace/ContinuousSistems[00m$ ./script 
+[H[2JThe script starts now
+Hi user
+
+	G N U P L O T
+	Version 4.6 patchlevel 4    last modified 2013-10-02 
+	Build System: Linux x86_64
+
+	Copyright (C) 1986-1993, 1998, 2004, 2007-2013
+	Thomas Williams, Colin Kelley and many others
+
+	gnuplot home:     http://www.gnuplot.info
+	faq, bugs, etc:   type "help FAQ"
+	immediate help:   type "help"  (plot window: hit 'h')
+
+Terminal type set to 'wxt'
+gnuplot> exit
+]0;koodu@koodu: ~/Elisa/Simu/workspace/ContinuousSistems[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu/workspace/ContinuousSistems[00m$ [H[2J]0;koodu@koodu: ~/Elisa/Simu/workspace/ContinuousSistems[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu/workspace/ContinuousSistems[00m$ ./script 
+[H[2JThe script starts now
+Hi user
+
+	G N U P L O T
+	Version 4.6 patchlevel 4    last modified 2013-10-02 
+	Build System: Linux x86_64
+
+	Copyright (C) 1986-1993, 1998, 2004, 2007-2013
+	Thomas Williams, Colin Kelley and many others
+
+	gnuplot home:     http://www.gnuplot.info
+	faq, bugs, etc:   type "help FAQ"
+	immediate help:   type "help"  (plot window: hit 'h')
+
+Terminal type set to 'wxt'
+gnuplot> exit
+./script: línea 9: -e: orden no encontrada
+]0;koodu@koodu: ~/Elisa/Simu/workspace/ContinuousSistems[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu/workspace/ContinuousSistems[00m$ [H[2J]0;koodu@koodu: ~/Elisa/Simu/workspace/ContinuousSistems[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu/workspace/ContinuousSistems[00m$ ./script 
+[H[2JThe script starts now
+Hi user
+]0;koodu@koodu: ~/Elisa/Simu/workspace/ContinuousSistems[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu/workspace/ContinuousSistems[00m$ ./script 
+[H[2JThe script starts now
+Hi user
+^C
+Press any key to exit... 
+]0;koodu@koodu: ~/Elisa/Simu/workspace/ContinuousSistems[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu/workspace/ContinuousSistems[00m$ [H[2J]0;koodu@koodu: ~/Elisa/Simu/workspace/ContinuousSistems[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu/workspace/ContinuousSistems[00m$ ./script 
+[H[2JThe script starts now
+Hi user
+
+Press any key to exit... ]0;koodu@koodu: ~/Elisa/Simu/workspace/ContinuousSistems[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu/workspace/ContinuousSistems[00m$ ./script 
+[H[2JThe script starts now
+Hi user
+
+Press any key to exit... ]0;koodu@koodu: ~/Elisa/Simu/workspace/ContinuousSistems[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu/workspace/ContinuousSistems[00m$ ./script 
+[H[2JThe script starts now
+Hi user
+
+]0;koodu@koodu: ~/Elisa/Simu/workspace/ContinuousSistems[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu/workspace/ContinuousSistems[00m$ cd ..
+]0;koodu@koodu: ~/Elisa/Simu/workspace[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu/workspace[00m$ cd ..
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ 
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ Java[K[K[K[Kjava -jar pa[K[KParachute.jar 
+Error: Invalid or corrupt jarfile Parachute.jar
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ ^C
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ jaa[Kva pa[K[KParacgy[K[Khute
+Error: no se ha encontrado o cargado la clase principal Parachute
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ ll | grep pr[K[KParachute.jar 
+-rw-rw-r--  1 koodu koodu   3258 jun 10 16:43 [01;31m[KParachute.jar[m[K
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ ll | grep Parachute.jar [10Pjava Parachute-jar Parachute.jar 
+(Time,Velocity)
+(0.00,0.00000)
+(0.02,0.00200)
+(0.04,0.00398)
+(0.06,0.00594)
+(0.08,0.00788)
+(0.10,0.00980)
+(0.12,0.01170)
+(0.14,0.01358)
+(0.16,0.01544)
+(0.18,0.01729)
+(0.20,0.01912)
+(0.22,0.02093)
+(0.24,0.02272)
+(0.26,0.02449)
+(0.28,0.02625)
+(0.30,0.02799)
+(0.32,0.02971)
+(0.34,0.03141)
+(0.36,0.03310)
+(0.38,0.03477)
+(0.40,0.03642)
+(0.42,0.03806)
+(0.44,0.03968)
+(0.46,0.04128)
+(0.48,0.04287)
+(0.50,0.04444)
+(0.52,0.04600)
+(0.54,0.04754)
+(0.56,0.04906)
+(0.58,0.05057)
+(0.60,0.05206)
+(0.62,0.05354)
+(0.64,0.05500)
+(0.66,0.05645)
+(0.68,0.05789)
+(0.70,0.05931)
+(0.72,0.06072)
+(0.74,0.06211)
+(0.76,0.06349)
+(0.78,0.06486)
+(0.80,0.06621)
+(0.82,0.06755)
+(0.84,0.06887)
+(0.86,0.07018)
+(0.88,0.07148)
+(0.90,0.07277)
+(0.92,0.07404)
+(0.94,0.07530)
+(0.96,0.07655)
+(0.98,0.07778)
+(1.00,0.07900)
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ [H[2J]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ p[K./practicos/[K[K[K[K[K[K[K[K[K[Kpar¡¡[K[K[K[K[K[K[Kll[Kl
+total 1228
+drwxrwxr-x  8 koodu koodu   4096 jun 10 16:47 [0m[01;34m.[0m/
+drwxrwxr-x 11 koodu koodu   4096 may 27 18:00 [01;34m..[0m/
+drwxrwxr-x  2 koodu koodu   4096 may  4 10:57 [01;34mbin[0m/
+drwx------  6 koodu koodu   4096 abr 26 16:52 [01;34mEOSimulator[0m/
+drwxrwxr-x  8 koodu koodu   4096 jun 10 12:58 [01;34m.git[0m/
+-rw-rw-r--  1 koodu koodu    524 jun 10 11:05 .gitignore
+-rw-rw-r--  1 koodu koodu 436939 may  6 16:36 [01;35mIMG_20170506_161740241.jpg[0m
+-rw-rw-r--  1 koodu koodu 650517 may  6 16:36 [01;35mIMG_20170506_161753614.jpg[0m
+-rw-r--r--  1 koodu koodu   3581 ago 23  1998 lcgrand.c
+-rw-r--r--  1 koodu koodu    441 ago 23  1998 lcgrand.h
+-rw-rw-r--  1 koodu koodu  11529 abr  4 10:45 p1ej3.c
+-rw-rw-r--  1 koodu koodu   8858 abr 18 22:23 p1ej3-nServers.c
+-rw-rw-r--  1 koodu koodu  16600 abr  4 10:25 p1ej3.o
+-rw-rw-r--  1 koodu koodu    719 may  4 10:57 p5ej3.c
+-rw-rw-r--  1 koodu koodu    680 jun 10 16:43 parachute.dat
+-rw-rw-r--  1 koodu koodu   3258 jun 10 16:43 [01;31mParachute.jar[0m
+-rw-rw-r--  1 koodu koodu    183 jun 10 16:47 parachuteScript
+drwxrwxr-x  2 koodu koodu   4096 may 14 11:46 [01;34mpracticos[0m/
+-rw-rw-r--  1 koodu koodu  23040 abr 30 19:32 QueueingTools.xls
+-rw-rw-r--  1 koodu koodu    878 abr  1 19:38 README.md
+-rw-rw-r--  1 koodu koodu   4725 abr 18 11:07 [01;31mSimulacion-PrimerEntrega.zip[0m
+-rw-rw-r--  1 koodu koodu  10389 abr 18 10:20 simulador-vv.c
+-rw-rw-r--  1 koodu koodu  11660 abr 18 10:20 simulador-vv-registro.c
+drwxrwxr-x  2 koodu koodu   4096 may 14 10:34 [01;34mteoricos[0m/
+drwxrwxr-x  5 koodu koodu   4096 jun  8 10:36 [01;34mworkspace[0m/
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ ./para[K[K[K[K[K[Klljava -jar Parachute.jar ll | grep[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[10Pjava Parachute-jar Parachute.jar cd ..[K./script chmod u+x script[7P./script [4Pcd ..java -jar Parachute.jar [10PParachutell | grep Parachute.jar java -jar[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cll[K[K./para[KachuteScrp[Ko[Kipt
+bash: ./parachuteScript: Permiso denegado
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ R[K[4P(reverse-i-search)`':[Cc': ./parachuteScript[1@h[C[C[C[C[C[C[C[C[Cm': chmod u+x script[1@o[C[C[C[C[8@failed reverse-i-search)`chmor[C[C[C[8P]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[7P./script chmod u+x script[K[K[K[K[K[KparachuteScript 
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ chmod u+x parachuteScript [9P./parachuteScript
+[H[2J(Time,Velocity)
+(0.00,0.00000)
+(0.02,0.00200)
+(0.04,0.00398)
+(0.06,0.00594)
+(0.08,0.00788)
+(0.10,0.00980)
+(0.12,0.01170)
+(0.14,0.01358)
+(0.16,0.01544)
+(0.18,0.01729)
+(0.20,0.01912)
+(0.22,0.02093)
+(0.24,0.02272)
+(0.26,0.02449)
+(0.28,0.02625)
+(0.30,0.02799)
+(0.32,0.02971)
+(0.34,0.03141)
+(0.36,0.03310)
+(0.38,0.03477)
+(0.40,0.03642)
+(0.42,0.03806)
+(0.44,0.03968)
+(0.46,0.04128)
+(0.48,0.04287)
+(0.50,0.04444)
+(0.52,0.04600)
+(0.54,0.04754)
+(0.56,0.04906)
+(0.58,0.05057)
+(0.60,0.05206)
+(0.62,0.05354)
+(0.64,0.05500)
+(0.66,0.05645)
+(0.68,0.05789)
+(0.70,0.05931)
+(0.72,0.06072)
+(0.74,0.06211)
+(0.76,0.06349)
+(0.78,0.06486)
+(0.80,0.06621)
+(0.82,0.06755)
+(0.84,0.06887)
+(0.86,0.07018)
+(0.88,0.07148)
+(0.90,0.07277)
+(0.92,0.07404)
+(0.94,0.07530)
+(0.96,0.07655)
+(0.98,0.07778)
+(1.00,0.07900)
+line 0: warning: Skipping unreadable file "plot.dat w linespoints lc rgb "
+line 0: No data in plot
+
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ ./parachuteScript
+[H[2J(Time,Velocity)
+(0.00,0.00000)
+(0.02,0.00200)
+(0.04,0.00398)
+(0.06,0.00594)
+(0.08,0.00788)
+(0.10,0.00980)
+(0.12,0.01170)
+(0.14,0.01358)
+(0.16,0.01544)
+(0.18,0.01729)
+(0.20,0.01912)
+(0.22,0.02093)
+(0.24,0.02272)
+(0.26,0.02449)
+(0.28,0.02625)
+(0.30,0.02799)
+(0.32,0.02971)
+(0.34,0.03141)
+(0.36,0.03310)
+(0.38,0.03477)
+(0.40,0.03642)
+(0.42,0.03806)
+(0.44,0.03968)
+(0.46,0.04128)
+(0.48,0.04287)
+(0.50,0.04444)
+(0.52,0.04600)
+(0.54,0.04754)
+(0.56,0.04906)
+(0.58,0.05057)
+(0.60,0.05206)
+(0.62,0.05354)
+(0.64,0.05500)
+(0.66,0.05645)
+(0.68,0.05789)
+(0.70,0.05931)
+(0.72,0.06072)
+(0.74,0.06211)
+(0.76,0.06349)
+(0.78,0.06486)
+(0.80,0.06621)
+(0.82,0.06755)
+(0.84,0.06887)
+(0.86,0.07018)
+(0.88,0.07148)
+(0.90,0.07277)
+(0.92,0.07404)
+(0.94,0.07530)
+(0.96,0.07655)
+(0.98,0.07778)
+(1.00,0.07900)
+line 0: warning: Skipping unreadable file "plot.dat"
+line 0: No data in plot
+
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ [H[2J]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ ./parachuteScript
+[H[2Jline 0: warning: Skipping unreadable file "plot.dat"
+line 0: No data in plot
+
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ ./parachuteScript
+[H[2J
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ [H[2J]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ ./parachuteScript
+[H[2J(Time,Velocity)
+(0.00,0.00000)
+(0.02,0.00200)
+(0.04,0.00398)
+(0.06,0.00594)
+(0.08,0.00788)
+(0.10,0.00980)
+(0.12,0.01170)
+(0.14,0.01358)
+(0.16,0.01544)
+(0.18,0.01729)
+(0.20,0.01912)
+(0.22,0.02093)
+(0.24,0.02272)
+(0.26,0.02449)
+(0.28,0.02625)
+(0.30,0.02799)
+(0.32,0.02971)
+(0.34,0.03141)
+(0.36,0.03310)
+(0.38,0.03477)
+(0.40,0.03642)
+(0.42,0.03806)
+(0.44,0.03968)
+(0.46,0.04128)
+(0.48,0.04287)
+(0.50,0.04444)
+(0.52,0.04600)
+(0.54,0.04754)
+(0.56,0.04906)
+(0.58,0.05057)
+(0.60,0.05206)
+(0.62,0.05354)
+(0.64,0.05500)
+(0.66,0.05645)
+(0.68,0.05789)
+(0.70,0.05931)
+(0.72,0.06072)
+(0.74,0.06211)
+(0.76,0.06349)
+(0.78,0.06486)
+(0.80,0.06621)
+(0.82,0.06755)
+(0.84,0.06887)
+(0.86,0.07018)
+(0.88,0.07148)
+(0.90,0.07277)
+(0.92,0.07404)
+(0.94,0.07530)
+(0.96,0.07655)
+(0.98,0.07778)
+(1.00,0.07900)
+Press any key to exit... 
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ [H[2J]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ ./parachuteScript
+[H[2J(Time,Velocity)
+(0.00,0.00000)
+(0.02,0.00200)
+(0.04,0.00398)
+(0.06,0.00594)
+(0.08,0.00788)
+(0.10,0.00980)
+(0.12,0.01170)
+(0.14,0.01358)
+(0.16,0.01544)
+(0.18,0.01729)
+(0.20,0.01912)
+(0.22,0.02093)
+(0.24,0.02272)
+(0.26,0.02449)
+(0.28,0.02625)
+(0.30,0.02799)
+(0.32,0.02971)
+(0.34,0.03141)
+(0.36,0.03310)
+(0.38,0.03477)
+(0.40,0.03642)
+(0.42,0.03806)
+(0.44,0.03968)
+(0.46,0.04128)
+(0.48,0.04287)
+(0.50,0.04444)
+(0.52,0.04600)
+(0.54,0.04754)
+(0.56,0.04906)
+(0.58,0.05057)
+(0.60,0.05206)
+(0.62,0.05354)
+(0.64,0.05500)
+(0.66,0.05645)
+(0.68,0.05789)
+(0.70,0.05931)
+(0.72,0.06072)
+(0.74,0.06211)
+(0.76,0.06349)
+(0.78,0.06486)
+(0.80,0.06621)
+(0.82,0.06755)
+(0.84,0.06887)
+(0.86,0.07018)
+(0.88,0.07148)
+(0.90,0.07277)
+(0.92,0.07404)
+(0.94,0.07530)
+(0.96,0.07655)
+(0.98,0.07778)
+(1.00,0.07900)
+Press any key to exit...
+
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ [H[2J]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ ./parachuteScript
+[H[2J(Time,Velocity)
+(0.00,0.00000)
+(0.02,0.00200)
+(0.04,0.00398)
+(0.06,0.00594)
+(0.08,0.00788)
+(0.10,0.00980)
+(0.12,0.01170)
+(0.14,0.01358)
+(0.16,0.01544)
+(0.18,0.01729)
+(0.20,0.01912)
+(0.22,0.02093)
+(0.24,0.02272)
+(0.26,0.02449)
+(0.28,0.02625)
+(0.30,0.02799)
+(0.32,0.02971)
+(0.34,0.03141)
+(0.36,0.03310)
+(0.38,0.03477)
+(0.40,0.03642)
+(0.42,0.03806)
+(0.44,0.03968)
+(0.46,0.04128)
+(0.48,0.04287)
+(0.50,0.04444)
+(0.52,0.04600)
+(0.54,0.04754)
+(0.56,0.04906)
+(0.58,0.05057)
+(0.60,0.05206)
+(0.62,0.05354)
+(0.64,0.05500)
+(0.66,0.05645)
+(0.68,0.05789)
+(0.70,0.05931)
+(0.72,0.06072)
+(0.74,0.06211)
+(0.76,0.06349)
+(0.78,0.06486)
+(0.80,0.06621)
+(0.82,0.06755)
+(0.84,0.06887)
+(0.86,0.07018)
+(0.88,0.07148)
+(0.90,0.07277)
+(0.92,0.07404)
+(0.94,0.07530)
+(0.96,0.07655)
+(0.98,0.07778)
+(1.00,0.07900)
+Press any key to exit...
+
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ ./parachuteScript
+[H[2J(Time,Velocity)
+(0.00,0.00000)
+(0.02,0.00200)
+(0.04,0.00399)
+(0.06,0.00597)
+(0.08,0.00794)
+(0.10,0.00990)
+(0.12,0.01185)
+(0.14,0.01379)
+(0.16,0.01572)
+(0.18,0.01764)
+(0.20,0.01955)
+(0.22,0.02145)
+(0.24,0.02334)
+(0.26,0.02522)
+(0.28,0.02709)
+(0.30,0.02895)
+(0.32,0.03081)
+(0.34,0.03266)
+(0.36,0.03450)
+(0.38,0.03633)
+(0.40,0.03815)
+(0.42,0.03996)
+(0.44,0.04176)
+(0.46,0.04355)
+(0.48,0.04533)
+(0.50,0.04710)
+(0.52,0.04886)
+(0.54,0.05062)
+(0.56,0.05237)
+(0.58,0.05411)
+(0.60,0.05584)
+(0.62,0.05756)
+(0.64,0.05927)
+(0.66,0.06097)
+(0.68,0.06267)
+(0.70,0.06436)
+(0.72,0.06604)
+(0.74,0.06771)
+(0.76,0.06937)
+(0.78,0.07102)
+(0.80,0.07266)
+(0.82,0.07430)
+(0.84,0.07593)
+(0.86,0.07755)
+(0.88,0.07916)
+(0.90,0.08076)
+(0.92,0.08236)
+(0.94,0.08395)
+(0.96,0.08553)
+(0.98,0.08710)
+(1.00,0.08866)
+Press any key to exit...
+
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ ./parachuteScript
+[H[2J(Time,Velocity)
+(0.00,0.00000)
+(0.02,0.00200)
+(0.04,0.00400)
+(0.06,0.00599)
+(0.08,0.00798)
+(0.10,0.00996)
+(0.12,0.01194)
+(0.14,0.01391)
+(0.16,0.01588)
+(0.18,0.01784)
+(0.20,0.01980)
+(0.22,0.02175)
+(0.24,0.02370)
+(0.26,0.02564)
+(0.28,0.02758)
+(0.30,0.02951)
+(0.32,0.03144)
+(0.34,0.03336)
+(0.36,0.03528)
+(0.38,0.03719)
+(0.40,0.03910)
+(0.42,0.04100)
+(0.44,0.04290)
+(0.46,0.04479)
+(0.48,0.04668)
+(0.50,0.04856)
+(0.52,0.05044)
+(0.54,0.05231)
+(0.56,0.05418)
+(0.58,0.05604)
+(0.60,0.05790)
+(0.62,0.05976)
+(0.64,0.06161)
+(0.66,0.06346)
+(0.68,0.06530)
+(0.70,0.06714)
+(0.72,0.06897)
+(0.74,0.07080)
+(0.76,0.07262)
+(0.78,0.07444)
+(0.80,0.07625)
+(0.82,0.07806)
+(0.84,0.07986)
+(0.86,0.08166)
+(0.88,0.08346)
+(0.90,0.08525)
+(0.92,0.08704)
+(0.94,0.08882)
+(0.96,0.09060)
+(0.98,0.09237)
+(1.00,0.09414)
+Press any key to exit...
+
+./parachuteScript: línea 13: EOF inesperado mientras se buscaba un `"' coincidente
+./parachuteScript: línea 16: error sintáctico: no se esperaba el final del fichero
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ ./parachuteScript
+[H[2J(Time,Velocity)
+(0.00,0.00000)
+(0.10,0.01000)
+(0.20,0.01950)
+(0.30,0.02852)
+(0.40,0.03709)
+(0.50,0.04524)
+(0.60,0.05298)
+(0.70,0.06033)
+(0.80,0.06731)
+(0.90,0.07394)
+(1.00,0.08024)
+Press any key to exit...
+
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ [H[2J]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ ./parachuteScript
+[H[2J(Time,Velocity)
+(0.00,0.00000)
+(0.02,0.00200)
+(0.04,0.00398)
+(0.06,0.00594)
+(0.08,0.00788)
+(0.10,0.00980)
+(0.12,0.01170)
+(0.14,0.01358)
+(0.16,0.01544)
+(0.18,0.01729)
+(0.20,0.01912)
+(0.22,0.02093)
+(0.24,0.02272)
+(0.26,0.02449)
+(0.28,0.02625)
+(0.30,0.02799)
+(0.32,0.02971)
+(0.34,0.03141)
+(0.36,0.03310)
+(0.38,0.03477)
+(0.40,0.03642)
+(0.42,0.03806)
+(0.44,0.03968)
+(0.46,0.04128)
+(0.48,0.04287)
+(0.50,0.04444)
+(0.52,0.04600)
+(0.54,0.04754)
+(0.56,0.04906)
+(0.58,0.05057)
+(0.60,0.05206)
+(0.62,0.05354)
+(0.64,0.05500)
+(0.66,0.05645)
+(0.68,0.05789)
+(0.70,0.05931)
+(0.72,0.06072)
+(0.74,0.06211)
+(0.76,0.06349)
+(0.78,0.06486)
+(0.80,0.06621)
+(0.82,0.06755)
+(0.84,0.06887)
+(0.86,0.07018)
+(0.88,0.07148)
+(0.90,0.07277)
+(0.92,0.07404)
+(0.94,0.07530)
+(0.96,0.07655)
+(0.98,0.07778)
+(1.00,0.07900)
+Press any key to exit...
+line 0: warning: Skipping unreadable file "plot.dat"
+line 0: No data in plot
+
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ ./parachuteScript
+[H[2J(Time,Velocity)
+(0.00,0.00000)
+(0.02,0.00200)
+(0.04,0.00398)
+(0.06,0.00594)
+(0.08,0.00788)
+(0.10,0.00980)
+(0.12,0.01170)
+(0.14,0.01358)
+(0.16,0.01544)
+(0.18,0.01729)
+(0.20,0.01912)
+(0.22,0.02093)
+(0.24,0.02272)
+(0.26,0.02449)
+(0.28,0.02625)
+(0.30,0.02799)
+(0.32,0.02971)
+(0.34,0.03141)
+(0.36,0.03310)
+(0.38,0.03477)
+(0.40,0.03642)
+(0.42,0.03806)
+(0.44,0.03968)
+(0.46,0.04128)
+(0.48,0.04287)
+(0.50,0.04444)
+(0.52,0.04600)
+(0.54,0.04754)
+(0.56,0.04906)
+(0.58,0.05057)
+(0.60,0.05206)
+(0.62,0.05354)
+(0.64,0.05500)
+(0.66,0.05645)
+(0.68,0.05789)
+(0.70,0.05931)
+(0.72,0.06072)
+(0.74,0.06211)
+(0.76,0.06349)
+(0.78,0.06486)
+(0.80,0.06621)
+(0.82,0.06755)
+(0.84,0.06887)
+(0.86,0.07018)
+(0.88,0.07148)
+(0.90,0.07277)
+(0.92,0.07404)
+(0.94,0.07530)
+(0.96,0.07655)
+(0.98,0.07778)
+(1.00,0.07900)
+Press any key to exit...
+
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ ll | gro[Kep Lotk[K[K[K[Klotk
+-rw-rw-r--  1 koodu koodu    509 jun 10 17:15 [01;31m[Klotk[m[Ka-volterra
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ ll | grep lotk[C-lotkilotk lotk
+-rw-rw-r--  1 koodu koodu    509 jun 10 17:15 [01;31m[Klotk[m[Ka-volterra
+-rw-rw-r--  1 koodu koodu   4419 jun 10 17:16 [01;31m[KLotk[m[KaVolterra.jar
+]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ ll | grep -i lotk[3Plotk./parachuteScript[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kl[K[K[K[4P(reverse-i-search)`':[C[27@c': chmod u+x parachuteScript[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@h[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C]0;koodu@koodu: ~/Elisa/Simu[01;32mkoodu@koodu[00m:[01;34m~/Elisa/Simu[00m$ chmod u+x parachuteScript [C[C[C[C[C[C[C[C[C[C[C[1P [1

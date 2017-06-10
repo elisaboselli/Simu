@@ -1,7 +1,12 @@
-SCRIPT
+-VSCRIPT
 java Main
 gnuplot
 set title "Parachute"
 set xlabel "Time"
 set ylabel "Velocity"
 plot "plot.dat" w linespoints lc rgb "purple"
+
+set title "Lotka-Volterra"
+gnuplot> set xlabel "Prey Quantity"
+gnuplot> set ylabel "Predator Quantity"
+gnuplot> plot "Lotka_Volterra.dat" w linepoints lc rgb "purple"
