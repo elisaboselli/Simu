@@ -1,0 +1,7 @@
+SCRIPT
+java Main
+gnuplot
+set title "Parachute"
+set xlabel "Time"
+set ylabel "Velocity"
+plot "plot.dat" w linespoints lc rgb "purple"

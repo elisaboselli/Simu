@@ -6,10 +6,13 @@
 *.exe
 *.o
 *.so
-/bin
-/EOSimulator
 /.metadata
-workspace/.metadata
+.project
+.classpath
+.settings
+/bin
+/workspace/.metadata
+/EOSimulator
 
 # Packages #
 ############
