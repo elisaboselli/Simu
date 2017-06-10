@@ -1,0 +1,15 @@
+#!/bin/bash
+
+clear
+
+# Execute java
+# Parameters: Prey Growth Rate, Prey Mortality Rate, Predator Growth Rate, Predator Mortality Rate, Euler Step, Time
+# Without parameters it uses the values: 3, 2, 1, 2, 0.1, 10
+java -jar LotkaVolterra.jar "3" "2" "1" "2" "0.1" "10"
+
+echo "Press any key to exit..."
+
+# Plot the results
+gnuplot -e "set title \"Lotka-Volterra\"; set xlabel \"Prey Quantity\"; set ylabel \"Predator Quantity\"; plot \"Lotka_Volterra.dat\" u 2:3 w linespoints lc rgb \"purple\"; pause -1"
+
+exit
